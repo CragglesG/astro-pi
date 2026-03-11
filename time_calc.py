@@ -8,9 +8,8 @@ def get_time(image):
         time = datetime.strptime(time_str, '%Y:%m:%d %H:%M:%S')
         return time
 
-def get_time_difference(image_1, image_2):
+def get_time_diff(image_1, image_2):
     time_1 = get_time(image_1)
     time_2 = get_time(image_2)
     time_difference = time_2 - time_1
     return time_difference.seconds
-
