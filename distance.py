@@ -23,6 +23,6 @@ def calculate_distance(coords1, coords2):
     return all_distances / len(merged_coords)
 
 def calculate_speed(feature_dist, GSD, time_diff):
-    distance = feature_dist * GSD / 10000
-    speed = distance / time_diff
+    distance = feature_dist * GSD / 100000
+    speed = distance / float(time_diff)
     return speed

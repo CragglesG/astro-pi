@@ -1,13 +1,17 @@
 from picamzero import Camera
+from logzero import logger, logfile
 from time_calc import get_time_diff
+from time import sleep
 import features
 import distance
 
 cam = Camera()
+logfile("main.log")
 
 def take_photos():
-    for i in range(10):
+    for i in range(25):
         cam.take_photo(f"image{i}.jpg")
+        sleep(15)
 
 def calculate(image1, image2):
     time_diff = get_time_diff(image1, image2)
@@ -20,13 +24,13 @@ def calculate(image1, image2):
 
 take_photos()
 
-# speeds = []
-# for i in range(9):
-#     speeds.append(calculate(f"image{i}.jpg", f"image{i+1}.jpg"))
+speeds = []
+for i in range(24):
+    s = calculate(f"image{i}.jpg", f"image{i+1}.jpg")
+    logger.info(f"Speed estimate {i}: {s}")
+    speeds.append(s)
 
-# speed = sum(speeds)/10
-
-speed = calculate("image0.jpg", "image1.jpg")
+speed = sum(speeds)/24
 
 with open ("result.txt", "w") as f:
     f.write("{:.4f}".format(speed))
