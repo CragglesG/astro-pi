@@ -6,7 +6,6 @@ def get_time(image):
     with open(image, 'rb') as image_file:
         img = Image(image_file)
         time_str = img.get("datetime_original")
-        logger.info(time_str)
         time = datetime.strptime(time_str, '%Y:%m:%d %H:%M:%S')
         return time
 
